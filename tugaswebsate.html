@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenis Jenis Hewan</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #fafafa;
+        }
+
+        /* Header Judul */
+        .header {
+            background: linear-gradient(135deg, #410221, #9fb4d3); /* Gradasi pink */
+            color: white;
+            text-align: center;
+            padding: 25px;
+            font-size: 32px;
+            font-weight: bold;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+            
+        }
+
+        /* Kontainer Utama */
+        .container {
+            display: flex;
+            height: calc(100vh - 80px);
+            
+            
+        }
+
+        /* Samping kiri (menu) */
+        .menu {
+            width: 20%;
+            background: linear-gradient(135deg, #e25fac, #345228); /* Gradasi hijau */
+            padding: 20px;
+            color: #333;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+            
+            
+        }
+
+        .menu h2 {
+            text-align: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #3d124e;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .menu ul li {
+            margin-bottom: 15px;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 18px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .menu ul li:nth-child(1) {
+            background-color: #6257c5; /* Warna menu untuk Asiatis */
+            color: white;
+        }
+
+        .menu ul li:nth-child(2) {
+            background-color: #da3093; /* Warna menu untuk Peralihan */
+            color: white;
+        }
+
+        .menu ul li:nth-child(3) {
+            background-color: #cccf1e; /* Warna menu untuk Autralis */
+            color: white;
+        }
+
+        .menu ul li:hover {
+            opacity: 0.8;
+        }
+
+        /* Tengah (konten utama) */
+        .content {
+            width: 60%;
+            padding: 20px;
+            background: linear-gradient(135deg, #ebaba3, #4e2929); 
+            overflow-y: scroll;
+        }
+
+        .content h2 {
+            font-size: 28px;
+            color: #000000;
+            text-align: center;
+            border-bottom: 2px solid #000000;
+            padding-bottom: 10px;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px #000000(0, 0, 0, 0.1);
+        }
+
+        .content p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #000000;
+            margin-bottom: 20px;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        /* Samping kanan (informasi tambahan) */
+        .right-panel {
+            width: 20%;
+            background: linear-gradient(135deg, #037ccc, #eb73bd);
+            padding: 20px;
+            color: white;
+            box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1);
+            
+            
+          
+        }
+
+        .right-panel h3 {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .right-panel ul {
+            list-style: square;
+            margin-left: 20px;
+        }
+
+        .right-panel ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Sembunyikan konten awalnya */
+        .content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- JavaScript untuk Konten Dinamis -->
+    <script>
+       // Membuat elemen-elemen secara dinamis dengan JavaScript
+document.addEventListener("DOMContentLoaded", function () {
+    // Header
+    const header = document.createElement("div");
+    header.className = "header";
+    header.innerText = "Persebaran Fauna di Indonesia";
+    document.body.appendChild(header);
+
+    // Kontainer Utama
+    const container = document.createElement("div");
+    container.className = "container";
+    document.body.appendChild(container);
+
+    // Bagian Menu
+    const menu = document.createElement("div");
+    menu.className = "menu";
+    menu.innerHTML = `
+        <h2>Jenis Jenis Fauna</h2>
+        <ul>
+            <li onclick="showContent('content1')">Asiatis</li>
+            <li onclick="showContent('content2')">Peralihan</li>
+            <li onclick="showContent('content3')">Australis</li>
+        </ul>
+    `;
+    container.appendChild(menu);
+
+    // Fungsi untuk membuat konten
+    function createContent(id, title, imgSrc, description, listItems) {
+        const content = document.createElement("div");
+        content.id = id;
+        content.className = "content";
+        content.innerHTML = `
+            <h2>${title}</h2>
+            <img src="${imgSrc}" alt="Fauna ${title}" width="800" height="500">
+            <p>${description}</p>
+            <ul>${listItems.map(item => `<li>${item}</li>`).join("")}</ul>
+        `;
+        return content;
+    }
+
+    // Menambahkan Konten Utama
+    const content1 = createContent(
+        "content1",
+        "Asiatis",
+        "ASIATIS.jpg",
+        "Wilayah fauna Indonesia tipe Asiatis dikenal juga dengan sebutan wilayah fauna Indonesia barat karena terdapat di Indonesia bagian barat, meliputi Pulau Sumatra, Jawa, Bali, dan Kalimantan, serta pulau-pulau kecil di sekitarnya. Fauna Asiatis memiliki ciri-ciri sebagai berikut: Hewan menyusui berukuran besar, memiliki banyak sekali jenis kera, memiliki banyak jenis ikan air tawar, burung yang memiliki warna yang sedikit, tidak memiliki kantung, memiliki banyak jenis reptil, dan burung burung nya bersuara merdu. Contoh fauna tipe asiatis di antaranya:",
+        [
+            "Mamalia: gajah, badak bercula satu, rusa, tapir, banteng, kerbau, monyet, orang utan, harimau, macan tutul, macam kumbang, tikus, beruang, kijang, anjing",
+            "Reptilia: biawak, buaya, kura-kura, kadal, ular, tokek, bunglon, trenggiling",
+            "Burung: elang bondol, jalak, merak, ayam hutan, burung hantu, kutilang, dan berbagai jenis unggas lainnya ",
+            "Ikan: mujair, arwana, dan pesut",
+            "Serangga: berbagai jenis kumbang dan kupu kupu, serta jenis serangga yang bersifat endemik",
+        ]
+    );
+
+    const content2 = createContent(
+        "content2",
+        "Peralihan",
+        "PERALIHAN.jpg",
+        "Wilayah fauna Indonesia peralihan atau tipe Asia-Australis sering pula disebut wilayah fauna Wallacea yang meliputi Pulau Sulawesi, Timor, Kepulauan Nusa Tenggara, dan Kepulauan Maluku. Wilayah ini berada di antara garis Wallace di sebelah barat dan garis Weber di sebelah timur. Fauna tipe peralihan memiliki beberapa ciri ciri, sebagai berikut: Hewan endemik atau hewan yang hanya bisa ditemukan di wilayah tertentu,hewannya tidak memiliki bulu yang lebat, memiliki burung dengan karakteristik yang unik, dan kombinasi antara fauna autralia dan asiatis. Contoh fauna tipe peralihan di antaranya: ",
+        [
+            "Mamalia: anoa, babi rusa, tapir,  ikan duyung, kuskus, monyet hitam, beruang, tarsius, monyet seba, kuda, sapi, dan banteng.",
+            "Amfibia: katak pohon, katak terbang, dan katak air.",
+            "Reptilia: ular, buaya, biawak, dan komodo.",
+            "Burung: burung dewata, maleo, mandar, raja udang, burung pemakan lebah, rangkong, kakatua, merpati dan angsa.",
+        ]
+    );
+
+    const content3 = createContent(
+        "content3",
+        "Australis",
+        "AUTRALIS.jpg",
+        "Wilayah fauna Indonesia timur atau tipe Australis disebut juga wilayah fauna Tanah Sahul yang meliputi Pulau Irian Jaya (Papua), Kepulauan Aru, dan pulau- pulau kecil di sekitarnya. Wilayah fauna tipe Australis dan wilayah fauna tipe Asia-Australis dibatasi oleh Garis Weber. Ciri-ciri fauna australis adalah: Mamalia berukuran kecil, Beberapa memiliki kantung di tubuhnya, Warna dan motif burung sangat mencolok, Sebagian hewan memiliki tanduk di kepalanya, Populasi ikan air tawar sangat terbatas. Contoh fauna tipe peralihan di antaranya:",
+        [
+            "Mamalia: kanguru, walabi, beruang,  koala, nokdiak (landak Irian), oposum layang (pemanjat berkantung), kuskus, biawak, kanguru pohon, dan kelelawar",
+            "Reptilia: buaya, biawak, ular,  kadal, dan kura-kura.",
+            "Burung: kakatua, beo, nuri, raja udang, cendrawasih, dan kasuari .",
+            "Amfibia: katak pohon, katak terbang, dan katak air.",
+            "Ikan: arwana dan berbagai jenis ikan air tawar yang jumlah spesiesnya relatif lebih sedikit dibandingkan dengan dua wilayah lainnya.",
+        ]
+    );
+
+    container.appendChild(content1);
+    container.appendChild(content2);
+    container.appendChild(content3);
+
+    // Bagian Samping Kanan
+    const rightPanel = document.createElement("div");
+    rightPanel.className = "right-panel";
+    rightPanel.innerHTML = `
+        <h3>Informasi Umum</h3>
+        <p>Berikut adalah informasi umum tentang persebaran fauna di Indonesia:</p>
+        <ul>
+            <li>Persebaran fauna di Indonesia dipengaruhi oleh beberapa faktor, seperti letak geografis, sejarah geologis, iklim, dan kondisi geografis.</li> 
+            <li>Fauna memiliki kecenderungan untuk melakukan perpindahan (migrasi) lebih tinggi dibandingkan flora.</li>
+            <li>Garis Wallace memisahkan persebaran fauna di Indonesia bagian barat dan tengah, sedangkan garis Webber memisahkan persebaran fauna di Indonesia bagian tengah dan timur.</li>
+        </ul>
+    `;
+    container.appendChild(rightPanel);
+
+    // Menambahkan fungsi showContent
+    window.showContent = function (contentId) {
+        const contents = document.querySelectorAll(".content");
+        contents.forEach(content => {
+            content.style.display = content.id === contentId ? "block" : "none";
+        });
+    };
+
+    // Menampilkan konten pertama secara default
+    showContent("content1");
+});
+
+    </script>
+</body>
+</html>
